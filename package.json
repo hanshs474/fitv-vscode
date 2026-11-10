@@ -1,0 +1,41 @@
+{
+  "name": "freeimagetovideo",
+  "displayName": "Free Image to Video: Photo to Video with Sound",
+  "description": "Free image to video AI with no daily cap: start with no sign-up, keep going on a free account. Every video comes with sound and no watermark. This is the official VS Code extension for Free Image to Video: turn a photo or a prompt into an MP4 clip saved in your workspace.",
+  "version": "0.1.0",
+  "publisher": "freeimagetovideo",
+  "author": { "name": "Free Image to Video", "email": "support@freeimagetovideo.ai", "url": "https://freeimagetovideo.ai/" },
+  "license": "MIT",
+  "icon": "icon.png",
+  "homepage": "https://freeimagetovideo.ai/?utm_source=vscode&utm_medium=extension",
+  "repository": { "type": "git", "url": "https://github.com/hanshs474/fitv-vscode" },
+  "bugs": { "url": "https://github.com/hanshs474/fitv-vscode/issues" },
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["Other", "Visualization"],
+  "keywords": ["image to video", "photo to video", "text to video", "ai video", "video generator", "animate photo", "freeimagetovideo"],
+  "main": "./extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "commands": [
+      { "command": "freeimagetovideo.photoToVideo", "title": "Photo to Video", "category": "Free Image to Video" },
+      { "command": "freeimagetovideo.textToVideo", "title": "Text to Video", "category": "Free Image to Video" },
+      { "command": "freeimagetovideo.showCredits", "title": "Show Credits", "category": "Free Image to Video" },
+      { "command": "freeimagetovideo.setApiKey", "title": "Set API Key", "category": "Free Image to Video" }
+    ],
+    "menus": {
+      "explorer/context": [
+        { "command": "freeimagetovideo.photoToVideo", "when": "resourceExtname =~ /^\\.(jpe?g|png|webp)$/i", "group": "navigation@90" }
+      ]
+    },
+    "configuration": {
+      "title": "Free Image to Video",
+      "properties": {
+        "freeimagetovideo.outputFolder": { "type": "string", "default": "assets", "description": "Workspace folder where new clips are saved." },
+        "freeimagetovideo.duration": { "type": "string", "default": "", "enum": ["", "4", "5", "6", "8", "10", "15"], "description": "Clip length in seconds. Empty = the site default." },
+        "freeimagetovideo.resolution": { "type": "string", "default": "", "enum": ["", "480p", "768p"], "description": "Empty = the site default." },
+        "freeimagetovideo.aspectRatio": { "type": "string", "default": "", "enum": ["", "16:9", "9:16", "1:1"], "description": "Empty = the site default." }
+      }
+    }
+  },
+  "scripts": { "test": "node test/client.test.js" }
+}
